@@ -6,7 +6,7 @@ export const fetchFromTMDB = async (url) => {
     headers: {
       accept: "application/json",
       Authorization:
-        "Bearer" + ENV_VARS.TMDB_API_KEY,
+        "Bearer " + ENV_VARS.TMDB_API_KEY,
     },
   };
 
