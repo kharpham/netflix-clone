@@ -9,7 +9,8 @@ app.use(express.json()); // parse req.body
 
 app.use("/api/auth", authRoutes);
 
-const PORT = ENV_VARS.PORT;
+
+const PORT = ENV_VARS.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server started at http://localhost:${PORT}`);
   connectDB();
