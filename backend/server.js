@@ -4,6 +4,9 @@ import authRoutes from "./routes/auth.route.js";
 import { connectDB } from "./config/db.js";
 
 const app = express();
+
+app.use(express.json()); // parse req.body
+
 app.use("/api/auth", authRoutes);
 
 const PORT = ENV_VARS.PORT;
