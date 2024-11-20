@@ -1,5 +1,6 @@
 import { User } from "../models/user.model.js";
 import bcryptjs from 'bcryptjs';
+import { generateTokenAndSetCookie } from "../utils/generateToken.js";
 
 export async function signup(req, res) {
     try {
@@ -40,12 +41,14 @@ export async function signup(req, res) {
             password: hashedPassword, 
             image
         });
-
+        
+        generateTokenAndSetCookie(newUser._id, res);
         await newUser.save();
         return res.status(201).json({success: true, message: "User created successfully", user: {
             ...newUser._doc,
             password: "",
         }});
+                
     } catch (error) {
         res.status(500).json({success: false, message: error.message});
     }
